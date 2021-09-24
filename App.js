@@ -11,7 +11,7 @@ export default function App() {
     >
       <View style={{
         backgroundColor: "dodgerblue",
-        flex: 2,
+        flex: 1,
       }}/> 
       <View style={{
         backgroundColor: "gold",
