@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, SafeAreaView, View, StyleSheet, Switch} from 'react-native';
+import {Agenda} from 'react-native-calendars';
 
 export default class App extends React.Component {
 
@@ -24,6 +25,7 @@ export default class App extends React.Component {
                         value={this.state.toggled}
                         style={styles.reminderAlertSwitch}/>
                 </View>
+                <Agenda></Agenda>
             </View>
         );
 
