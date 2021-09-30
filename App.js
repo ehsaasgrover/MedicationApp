@@ -1,16 +1,32 @@
 import React from 'react';
-import {Text, SafeAreaView, View, StyleSheet} from 'react-native';
+import {Text, SafeAreaView, View, StyleSheet, Switch} from 'react-native';
 
 export default class App extends React.Component {
+
+    state = {
+        toggled : false
+    }
+
+    toggleSwitch = (value) => {
+        this.setState({toggled : value})
+    }
+
     render() {
         return (
             <View style={styles.background}>
                 <View style={styles.medicationHeaderContainer}>
                     <Text style={styles.medicationHeader}> Medication </Text>
                 </View>
-                <View style={styles.reminderAlertContainer}/>
+                <View style={styles.reminderAlertContainer}>
+                    <Text style={styles.reminderAlertText}> Reminders </Text>
+                    <Switch
+                        onValueChange={this.toggleSwitch}
+                        value={this.state.toggled}
+                        style={styles.reminderAlertSwitch}/>
+                </View>
             </View>
         );
+
     }
 
 }
@@ -24,22 +40,36 @@ const styles = StyleSheet.create({
     medicationHeaderContainer: {
         marginTop: 40,
         height: "10%",
-        backgroundColor: "dodgerblue"
+        backgroundColor: "#fff"
     },
     medicationHeader: {
         fontSize: 40,
-        bottom: -30
+        bottom: -30,
+        fontWeight: "bold",
+        marginLeft: 15
     },
 
     reminderAlertContainer: {
         marginTop: 5,
-        height: '8%',
-        width: '90%',
-        backgroundColor: "dodgerblue",
-        borderBottomStartRadius: 20,
-        borderBottomEndRadius: 20,
-        borderTopStartRadius: 20,
-        borderTopEndRadius: 20
+        height: '7%',
+        width: '95%',
+        backgroundColor: "#85C1E9",
+        borderBottomStartRadius: 10,
+        borderBottomEndRadius: 10,
+        borderTopStartRadius: 10,
+        borderTopEndRadius: 10,
+        marginLeft: 10
+    },
+    reminderAlertText: {
+        fontSize: 30,
+        bottom: -10,
+        marginLeft: 15,
+        color: '#fff',
+        fontWeight: "bold",
+    },
+    reminderAlertSwitch: {
+        bottom: 20,
+        marginLeft: 320
     }
 
 });
