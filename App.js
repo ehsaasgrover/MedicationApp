@@ -1,17 +1,16 @@
 import React from 'react';
-import {Text, SafeAreaView, View, StyleSheet, Switch} from 'react-native';
+import {Text, SafeAreaView, View, StyleSheet, Switch, Alert, TouchableOpacity} from 'react-native';
 import {Agenda} from 'react-native-calendars';
 
 export default class App extends React.Component {
     state = {
-        toggled : false,
+        toggled: false,
         items: {}
     }
 
     toggleSwitch = (value) => {
-        this.setState({toggled : value})
+        this.setState({toggled: value})
     }
-
 
 
     render() {
@@ -30,7 +29,11 @@ export default class App extends React.Component {
                 <Agenda
                     items={this.state.items}
                     loadItemsForMonth={this.loadItems.bind(this)}
-                    selected={'2017-05-16'}
+                    selected={'2021-04-02'}
+                    renderItem={this.renderItem.bind(this)}
+                    // renderEmptyData={this.renderEmptyDate.bind(this)}
+                    // rowHasChanged={this.rowHasChanged.bind(this)}
+                    // showClosingKnob={true}
                 />
             </View>
         );
@@ -68,6 +71,27 @@ export default class App extends React.Component {
         return date.toISOString().split('T')[0];
     }
 
+    renderItem(item) {
+        return (
+            <TouchableOpacity style={styles.itemBackground} onPress={() => Alert.alert(item.name)}>
+                <View>
+                    <Text>{item.name}</Text>
+                </View>
+            </TouchableOpacity>
+        );
+    }
+
+    renderEmptyDate() {
+        return (
+            <View style={styles.emptyDate}>
+                <Text>This is empty date!</Text>
+            </View>
+        );
+    }
+
+    rowHasChanged(r1, r2) {
+        return r1.name !== r2.name;
+    }
 }
 
 
@@ -109,6 +133,30 @@ const styles = StyleSheet.create({
     reminderAlertSwitch: {
         bottom: 20,
         marginLeft: 320
-    }
+    },
+
+    item: {
+        backgroundColor: 'white',
+        flex: 1,
+        borderRadius: 5,
+        padding: 10,
+        marginRight: 10,
+        marginTop: 17
+    },
+    emptyDate: {
+        height: 15,
+        flex: 1,
+        paddingTop: 30
+    },
+
+    itemBackground: {
+        backgroundColor: 'white',
+        flex: 1,
+        borderRadius: 5,
+        padding: 10,
+        marginRight: 10,
+        marginTop: 17
+    },
+
 
 });
