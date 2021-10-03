@@ -7,13 +7,8 @@ export default class App extends React.Component {
     state = {
         toggled: false,
         items: {},
-        toggleColor: true
     }
 
-    changeCheckBox() {
-        const newState = !this.state.toggleColor;
-        this.setState({toggleColor:newState})
-    }
 
     toggleSwitch = (value) => {
         this.setState({toggled: value})
@@ -76,26 +71,13 @@ export default class App extends React.Component {
     }
 
     renderItem(item) {
-        const {toggleColor} = this.state;
-        const checkBoxColor = toggleColor ?"white":"#F56868FF";
         return (
             <View style={styles.item} onPress={() => Alert.alert(item.name)}>
                 <View>
                     <Text>{item.name}</Text>
                 </View>
                 <TouchableOpacity
-                    onPress={() => this.changeCheckBox()}
-                    style={{
-                        borderWidth: 0.5,
-                        width: 20,
-                        height: 20,
-                        borderRadius: 10,
-                        marginLeft: 250,
-                        justifyContent: 'center',
-                        alignContent: 'center',
-                        marginTop: -5,
-                        backgroundColor: checkBoxColor
-                    }}/>
+                    style={styles.checkBox}/>
             </View>
         );
     }
@@ -159,16 +141,16 @@ const styles = StyleSheet.create({
     },
 
     checkBox: {
-        // backgroundColor: 'white',
-        // borderColor: 'black',
-        // borderWidth: 0.5,
-        // width: 20,
-        // height: 20,
-        // borderRadius: 10,
-        // marginLeft: 250,
-        // justifyContent: 'center',
-        // alignContent: 'center',
-        // marginTop: -5
+        backgroundColor: 'white',
+        borderColor: 'black',
+        borderWidth: 0.5,
+        width: 20,
+        height: 20,
+        borderRadius: 10,
+        marginLeft: 250,
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginTop: -5
     }
 
 
