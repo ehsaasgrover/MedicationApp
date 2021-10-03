@@ -28,9 +28,13 @@ export default class App extends React.Component {
                         style={styles.reminderAlertSwitch}/>
                 </View>
                 <Agenda
-                    items={this.state.items}
+                    items={{'2012-05-22': [{name: '9 AM - One 200 mg Paracetamol '}],
+                        '2012-05-23': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}],
+                        '2012-05-24': [{name: '9 AM - One 200 mg Paracetamol'}],
+                        '2012-05-25': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}]
+                    }}
                     loadItemsForMonth={this.loadItems.bind(this)}
-                    selected={'2021-04-02'}
+                    selected={'2012-05-22'}
 
                     renderItem={this.renderItem.bind(this)}
                 />
