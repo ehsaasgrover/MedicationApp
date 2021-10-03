@@ -2,10 +2,12 @@ import React from 'react';
 import {Text, SafeAreaView, View, StyleSheet, Switch, Alert, TouchableOpacity} from 'react-native';
 import {Agenda} from 'react-native-calendars';
 
+
 export default class App extends React.Component {
     state = {
         toggled: false,
-        items: {}
+        items: {},
+
     }
 
     toggleSwitch = (value) => {
@@ -30,10 +32,8 @@ export default class App extends React.Component {
                     items={this.state.items}
                     loadItemsForMonth={this.loadItems.bind(this)}
                     selected={'2021-04-02'}
+
                     renderItem={this.renderItem.bind(this)}
-                    // renderEmptyData={this.renderEmptyDate.bind(this)}
-                    // rowHasChanged={this.rowHasChanged.bind(this)}
-                    // showClosingKnob={true}
                 />
             </View>
         );
@@ -73,25 +73,16 @@ export default class App extends React.Component {
 
     renderItem(item) {
         return (
-            <TouchableOpacity style={styles.itemBackground} onPress={() => Alert.alert(item.name)}>
+            <View style={styles.item} onPress={() => Alert.alert(item.name)}>
                 <View>
                     <Text>{item.name}</Text>
                 </View>
-            </TouchableOpacity>
-        );
-    }
-
-    renderEmptyDate() {
-        return (
-            <View style={styles.emptyDate}>
-                <Text>This is empty date!</Text>
+                <TouchableOpacity style={styles.checkBox}/>
             </View>
         );
     }
 
-    rowHasChanged(r1, r2) {
-        return r1.name !== r2.name;
-    }
+
 }
 
 
@@ -149,14 +140,18 @@ const styles = StyleSheet.create({
         paddingTop: 30
     },
 
-    itemBackground: {
+    checkBox: {
         backgroundColor: 'white',
-        flex: 1,
-        borderRadius: 5,
-        padding: 10,
-        marginRight: 10,
-        marginTop: 17
-    },
+        borderColor: 'black',
+        borderWidth: 0.5,
+        width: 20,
+        height: 20,
+        borderRadius: 10,
+        marginLeft: 250,
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginTop: -5
+    }
 
 
 });
