@@ -34,7 +34,7 @@ export default class App extends React.Component {
                         '2012-05-25': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}]
                     }}
 
-                    loadItemsForMonth={this.loadItems.bind(this)}
+                    //loadItemsForMonth={this.loadItems.bind(this)}
                     selected={'2012-05-22'}
 
                     renderItem={this.renderItem.bind(this)}
@@ -71,10 +71,10 @@ export default class App extends React.Component {
         }, 1000);
     }
 
-    timeToString(time) {
-        const date = new Date(time);
-        return date.toISOString().split('T')[0];
-    }
+    // timeToString(time) {
+    //     const date = new Date(time);
+    //     return date.toISOString().split('T')[0];
+    // }
 
     renderItem(item) {
         return (
@@ -83,7 +83,9 @@ export default class App extends React.Component {
                     <Text>{item.name}</Text>
                 </View>
                 <TouchableOpacity
-                    style={styles.checkBox}/>
+                    style={styles.checkBox}
+                    onPress={() => Alert.alert(item.name)}
+                />
             </View>
         );
     }
