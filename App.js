@@ -33,11 +33,13 @@ export default class App extends React.Component {
                         '2012-05-24': [{name: '9 AM - One 200 mg Paracetamol'}],
                         '2012-05-25': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}]
                     }}
+
                     loadItemsForMonth={this.loadItems.bind(this)}
                     selected={'2012-05-22'}
 
                     renderItem={this.renderItem.bind(this)}
-                />
+                    >
+                </Agenda>
             </View>
         );
 
@@ -54,7 +56,7 @@ export default class App extends React.Component {
                     for (let j = 0; j < numItems; j++) {
                         this.state.items[strTime].push({
                             name: 'Item for ' + strTime + ' #' + j,
-                            height: Math.max(50, Math.floor(Math.random() * 150))
+                            height: Math.max(50, Math.floor(Math.random() * 150)),
                         });
                     }
                 }
