@@ -9,7 +9,6 @@ export default class App extends React.Component {
         items: {},
     }
 
-
     toggleSwitch = (value) => {
         this.setState({toggled: value})
     }
@@ -36,7 +35,6 @@ export default class App extends React.Component {
 
                     //loadItemsForMonth={this.loadItems.bind(this)}
                     selected={'2012-05-22'}
-
                     renderItem={this.renderItem.bind(this)}
                     >
                 </Agenda>
@@ -89,8 +87,6 @@ export default class App extends React.Component {
             </View>
         );
     }
-
-
 }
 
 
@@ -155,11 +151,9 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
         borderRadius: 10,
-        marginLeft: 250,
+        marginLeft: 290,
         justifyContent: 'center',
         alignContent: 'center',
         marginTop: -5
     }
-
-
 });
