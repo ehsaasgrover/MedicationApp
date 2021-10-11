@@ -27,7 +27,7 @@ export default class App extends React.Component {
                         style={styles.reminderAlertSwitch}/>
                 </View>
                 <Agenda
-                    items={{'2012-05-22': [{name: '9 AM - One 200 mg Paracetamol '}],
+                    items={{'2012-05-22': [{name: '9 AM - One 200 mg Paracetamol ', toggleColor: true}],
                         '2012-05-23': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}],
                         '2012-05-24': [{name: '9 AM - One 200 mg Paracetamol'}],
                         '2012-05-25': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}]
