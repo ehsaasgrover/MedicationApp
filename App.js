@@ -47,19 +47,24 @@ export default class App extends React.Component {
 
     loadItems(day) {
         setTimeout(() => {
-            for (let i = -15; i < 85; i++) {
+            for (let i = 0; i < 2; i++) {
                 const time = day.timestamp + i * 24 * 60 * 60 * 1000;
                 const strTime = this.timeToString(time);
                 if (!this.state.items[strTime]) {
                     this.state.items[strTime] = [];
-                    const numItems = Math.floor(Math.random() * 3 + 1);
-                    for (let j = 0; j < numItems; j++) {
-                        this.state.items[strTime].push({
-                            name: 'Item for ' + strTime + ' #' + j,
-                            height: Math.max(50, Math.floor(Math.random() * 150)),
-                            toggleColor: false
-                        });
-                    }
+                    // const numItems = Math.floor(Math.random() * 3 + 1);
+                    // for (let j = 0; j < numItems; j++) {
+                    //     this.state.items[strTime].push({
+                    //         name: 'Item for ' + strTime + ' #' + j,
+                    //         height: Math.max(50, Math.floor(Math.random() * 150)),
+                    //         toggleColor: false
+                    //     });
+                    // }
+                    this.state.items[strTime].push ({
+                        name: '9am - 200mg Panadol',
+                        height: Math.max(50, Math.floor(Math.random() * 150)),
+                        toggleColor: false
+                    });
                 }
             }
             const newItems = {};
