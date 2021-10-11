@@ -2,25 +2,24 @@ import React from 'react';
 import {Text, SafeAreaView, View, StyleSheet, Switch, Alert, TouchableOpacity} from 'react-native';
 import {Agenda} from 'react-native-calendars';
 
-
 export default class App extends React.Component {
+
     state = {
         toggled: false,
-        items: {'2012-05-22': [{name: '9 AM - One 200 mg Paracetamol ', toggleColor: true}],
-                '2012-05-23': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}],
-                '2012-05-24': [{name: '9 AM - One 200 mg Paracetamol', toggleColor: true}],
-                '2012-05-25': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}]
-            }
-        // toggleColor: true
+        items: {
+            '2012-05-22': [{name: '9 AM - One 200 mg Paracetamol '}],
+            '2012-05-23': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}],
+            '2012-05-24': [{name: '9 AM - One 200 mg Paracetamol'}],
+            '2012-05-25': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}]
+        }
     }
 
-    
     toggleSwitch = (value) => {
         this.setState({toggled: value})
     }
 
     checkList(item) {
-        const newState =!item.toggleColor;
+        const newState = !item.toggleColor;
         item.toggleColor = newState;
         this.setState({toggleColor: newState});
     }
@@ -39,21 +38,12 @@ export default class App extends React.Component {
                         style={styles.reminderAlertSwitch}/>
                 </View>
                 <Agenda
-                    // items={{'2012-05-22': [{name: '9 AM - One 200 mg Paracetamol ', toggleColor: true}],
-                    //     '2012-05-23': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}],
-                    //     '2012-05-24': [{name: '9 AM - One 200 mg Paracetamol', toggleColor: true}],
-                    //     '2012-05-25': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}]
-                    // }}
                     items={this.state.items}
-
                     //loadItemsForMonth={this.loadItems.bind(this)}
                     selected={'2012-05-22'}
-                    renderItem={this.renderItem.bind(this)}
-                    >
-                </Agenda>
+                    renderItem={this.renderItem.bind(this)}/>
             </View>
         );
-
     }
 
     loadItems(day) {
@@ -82,11 +72,6 @@ export default class App extends React.Component {
         }, 1000);
     }
 
-    // timeToString(time) {
-    //     const date = new Date(time);
-    //     return date.toISOString().split('T')[0];
-    // }
-
     renderItem(item) {
         const checkBoxColor = item.toggleColor ? "red" : "white";
         return (
@@ -113,7 +98,6 @@ export default class App extends React.Component {
 
 }
 
-
 const styles = StyleSheet.create({
     background: {
         flex: 1,
@@ -130,7 +114,6 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginLeft: 15
     },
-
     reminderAlertContainer: {
         marginTop: 5,
         height: '7%',
@@ -153,7 +136,6 @@ const styles = StyleSheet.create({
         bottom: 20,
         marginLeft: 320
     },
-
     item: {
         backgroundColor: 'white',
         flex: 1,
@@ -162,12 +144,6 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginTop: 17
     },
-    emptyDate: {
-        height: 15,
-        flex: 1,
-        paddingTop: 30
-    },
-
     checkBox: {
         backgroundColor: 'white',
         borderColor: 'black',
