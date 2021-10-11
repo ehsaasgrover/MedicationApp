@@ -6,12 +6,13 @@ import {Agenda} from 'react-native-calendars';
 export default class App extends React.Component {
     state = {
         toggled: false,
-        items: {},
-        toggleColor: true
+        items: {}
+        // toggleColor: true
     }
 
-    changeCheckBox() {
-        const newState = !this.state.toggleColor;
+    changeCheckBox(item) {
+        const newState = !item.toggleColor;
+        item.toggleColor = newState;
         this.setState({toggleColor:newState})
     }
 
@@ -55,7 +56,8 @@ export default class App extends React.Component {
                     for (let j = 0; j < numItems; j++) {
                         this.state.items[strTime].push({
                             name: 'Item for ' + strTime + ' #' + j,
-                            height: Math.max(50, Math.floor(Math.random() * 150))
+                            height: Math.max(50, Math.floor(Math.random() * 150)),
+                            toggleColor: false
                         });
                     }
                 }
@@ -76,15 +78,15 @@ export default class App extends React.Component {
     }
 
     renderItem(item) {
-        const {toggleColor} = this.state;
-        const checkBoxColor = toggleColor ?"white":"#F56868FF";
+        // const {toggleColor} = item.toggleColor;
+        const checkBoxColor = item.toggleColor ?"red":"white";
         return (
             <View style={styles.item} onPress={() => Alert.alert(item.name)}>
                 <View>
                     <Text>{item.name}</Text>
                 </View>
                 <TouchableOpacity
-                    onPress={() => this.changeCheckBox()}
+                    onPress={() => this.changeCheckBox(item)}
                     style={{
                         borderWidth: 0.5,
                         width: 20,
