@@ -6,18 +6,23 @@ import {Agenda} from 'react-native-calendars';
 export default class App extends React.Component {
     state = {
         toggled: false,
-        items: {}
+        items: {'2012-05-22': [{name: '9 AM - One 200 mg Paracetamol ', toggleColor: true}],
+                '2012-05-23': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}],
+                '2012-05-24': [{name: '9 AM - One 200 mg Paracetamol', toggleColor: true}],
+                '2012-05-25': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}]
+            }
         // toggleColor: true
     }
 
-    changeCheckBox(item) {
-        const newState = !item.toggleColor;
-        item.toggleColor = newState;
-        this.setState({toggleColor:newState})
-    }
-
+    
     toggleSwitch = (value) => {
         this.setState({toggled: value})
+    }
+
+    checkList(item) {
+        const newState =!item.toggleColor;
+        item.toggleColor = newState;
+        this.setState({toggleColor: newState});
     }
 
     render() {
@@ -34,12 +39,18 @@ export default class App extends React.Component {
                         style={styles.reminderAlertSwitch}/>
                 </View>
                 <Agenda
+                    // items={{'2012-05-22': [{name: '9 AM - One 200 mg Paracetamol ', toggleColor: true}],
+                    //     '2012-05-23': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}],
+                    //     '2012-05-24': [{name: '9 AM - One 200 mg Paracetamol', toggleColor: true}],
+                    //     '2012-05-25': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}]
+                    // }}
                     items={this.state.items}
-                    loadItemsForMonth={this.loadItems.bind(this)}
-                    selected={'2021-04-02'}
 
+                    //loadItemsForMonth={this.loadItems.bind(this)}
+                    selected={'2012-05-22'}
                     renderItem={this.renderItem.bind(this)}
-                />
+                    >
+                </Agenda>
             </View>
         );
 
@@ -52,19 +63,13 @@ export default class App extends React.Component {
                 const strTime = this.timeToString(time);
                 if (!this.state.items[strTime]) {
                     this.state.items[strTime] = [];
-                    // const numItems = Math.floor(Math.random() * 3 + 1);
-                    // for (let j = 0; j < numItems; j++) {
-                    //     this.state.items[strTime].push({
-                    //         name: 'Item for ' + strTime + ' #' + j,
-                    //         height: Math.max(50, Math.floor(Math.random() * 150)),
-                    //         toggleColor: false
-                    //     });
-                    // }
-                    this.state.items[strTime].push ({
-                        name: '9am - 200mg Panadol',
-                        height: Math.max(50, Math.floor(Math.random() * 150)),
-                        toggleColor: false
-                    });
+                    const numItems = Math.floor(Math.random() * 3 + 1);
+                    for (let j = 0; j < numItems; j++) {
+                        this.state.items[strTime].push({
+                            name: 'Item for ' + strTime + ' #' + j,
+                            height: Math.max(50, Math.floor(Math.random() * 150)),
+                        });
+                    }
                 }
             }
             const newItems = {};
@@ -77,27 +82,26 @@ export default class App extends React.Component {
         }, 1000);
     }
 
-    timeToString(time) {
-        const date = new Date(time);
-        return date.toISOString().split('T')[0];
-    }
+    // timeToString(time) {
+    //     const date = new Date(time);
+    //     return date.toISOString().split('T')[0];
+    // }
 
     renderItem(item) {
-        // const {toggleColor} = item.toggleColor;
-        const checkBoxColor = item.toggleColor ?"red":"white";
+        const checkBoxColor = item.toggleColor ? "red" : "white";
         return (
             <View style={styles.item} onPress={() => Alert.alert(item.name)}>
                 <View>
                     <Text>{item.name}</Text>
                 </View>
                 <TouchableOpacity
-                    onPress={() => this.changeCheckBox(item)}
+                    onPress={() => this.checkList(item)}
                     style={{
                         borderWidth: 0.5,
                         width: 20,
                         height: 20,
                         borderRadius: 10,
-                        marginLeft: 250,
+                        marginLeft: 290,
                         justifyContent: 'center',
                         alignContent: 'center',
                         marginTop: -5,
@@ -106,7 +110,6 @@ export default class App extends React.Component {
             </View>
         );
     }
-
 
 }
 
@@ -166,17 +169,15 @@ const styles = StyleSheet.create({
     },
 
     checkBox: {
-        // backgroundColor: 'white',
-        // borderColor: 'black',
-        // borderWidth: 0.5,
-        // width: 20,
-        // height: 20,
-        // borderRadius: 10,
-        // marginLeft: 250,
-        // justifyContent: 'center',
-        // alignContent: 'center',
-        // marginTop: -5
+        backgroundColor: 'white',
+        borderColor: 'black',
+        borderWidth: 0.5,
+        width: 20,
+        height: 20,
+        borderRadius: 10,
+        marginLeft: 310,
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginTop: -5
     }
-
-
 });
