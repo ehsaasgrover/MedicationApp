@@ -6,11 +6,17 @@ import {Agenda} from 'react-native-calendars';
 export default class App extends React.Component {
     state = {
         toggled: false,
-        items: {},
+        items: {}
     }
 
     toggleSwitch = (value) => {
         this.setState({toggled: value})
+    }
+
+    checkList(item) {
+        const newState =!item.toggleColor;
+        item.toggleColor = newState;
+        this.setState({toggleColor: newState});
     }
 
     render() {
@@ -27,7 +33,7 @@ export default class App extends React.Component {
                         style={styles.reminderAlertSwitch}/>
                 </View>
                 <Agenda
-                    items={{'2012-05-22': [{name: '9 AM - One 200 mg Paracetamol ', toggleColor: true}],
+                    items={{'2012-05-22': [{name: '9 AM - One 200 mg Paracetamol ', toggleColor: false}],
                         '2012-05-23': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}],
                         '2012-05-24': [{name: '9 AM - One 200 mg Paracetamol'}],
                         '2012-05-25': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}]
@@ -75,18 +81,29 @@ export default class App extends React.Component {
     // }
 
     renderItem(item) {
+        const checkBoxColor = item.toggleColor ? "red" : "white";
         return (
             <View style={styles.item} onPress={() => Alert.alert(item.name)}>
                 <View>
                     <Text>{item.name}</Text>
                 </View>
                 <TouchableOpacity
-                    style={styles.checkBox}
-                    onPress={() => Alert.alert(item.name)}
-                />
+                    onPress={() => this.checkList(item)}
+                    style={{
+                        borderWidth: 0.5,
+                        width: 20,
+                        height: 20,
+                        borderRadius: 10,
+                        marginLeft: 250,
+                        justifyContent: 'center',
+                        alignContent: 'center',
+                        marginTop: -5,
+                        backgroundColor: checkBoxColor
+                    }}/>
             </View>
         );
     }
+
 }
 
 
