@@ -15,7 +15,13 @@ export default class App extends React.Component {
     }
 
     toggleSwitch = (value) => {
+        let stateStatus;
         this.setState({toggled: value})
+        if (value === true) {
+            Alert.alert ("You will now receive medication reminder notifications");
+        } else {
+            Alert.alert ("Reminder notifications have been turned off");
+        }
     }
 
     checkList(item) {
@@ -37,6 +43,7 @@ export default class App extends React.Component {
                         value={this.state.toggled}
                         style={styles.reminderAlertSwitch}/>
                 </View>
+
                 <Agenda
                     items={this.state.items}
                     //loadItemsForMonth={this.loadItems.bind(this)}
@@ -75,7 +82,7 @@ export default class App extends React.Component {
     renderItem(item) {
         const checkBoxColor = item.toggleColor ? "red" : "white";
         return (
-            <View style={styles.item} onPress={() => Alert.alert(item.name)}>
+            <View style={styles.item}>
                 <View>
                     <Text>{item.name}</Text>
                 </View>
