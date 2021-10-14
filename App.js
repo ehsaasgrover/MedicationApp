@@ -1,6 +1,8 @@
 import React from 'react';
-import {Text, SafeAreaView, View, StyleSheet, Switch, Alert, TouchableOpacity} from 'react-native';
+import {Text, SafeAreaView, View, StyleSheet, Switch, Alert, TouchableOpacity, Button} from 'react-native';
 import {Agenda} from 'react-native-calendars';
+// import { createStackNavigator, createAppContainer } from 'react-navigation';
+
 
 export default class App extends React.Component {
 
@@ -9,7 +11,7 @@ export default class App extends React.Component {
         items: {
             '2012-05-22': [{name: '9 AM - One 200 mg Paracetamol '}],
             '2012-05-23': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}],
-            '2012-05-24': [{name: '9 AM - One 200 mg Paracetamol'}],
+            '2012-05-24': [{name: '2 AM - One 200 mg Paracetamol'}],
             '2012-05-25': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}]
         }
     }
@@ -35,6 +37,9 @@ export default class App extends React.Component {
             <View style={styles.background}>
                 <View style={styles.medicationHeaderContainer}>
                     <Text style={styles.medicationHeader}> Medication </Text>
+                    <View style={styles.buttonContainer}>
+                        <Text style={styles.addButton}> + </Text>
+                    </View>
                 </View>
                 <View style={styles.reminderAlertContainer}>
                     <Text style={styles.reminderAlertText}> Reminders </Text>
@@ -43,12 +48,12 @@ export default class App extends React.Component {
                         value={this.state.toggled}
                         style={styles.reminderAlertSwitch}/>
                 </View>
-
                 <Agenda
                     items={this.state.items}
                     //loadItemsForMonth={this.loadItems.bind(this)}
                     selected={'2012-05-22'}
                     renderItem={this.renderItem.bind(this)}/>
+
             </View>
         );
     }
@@ -120,6 +125,32 @@ const styles = StyleSheet.create({
         bottom: -30,
         fontWeight: "bold",
         marginLeft: 15
+    },
+    buttonContainer: {
+        width: 50,
+        height: 50,
+        borderRadius: 30,
+        marginLeft: 330,
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginTop: -20,
+        backgroundColor: '#85C1E9',
+        shadowOffset: {
+            width: 3,
+            height: 3
+        },
+        shadowColor: 'black',
+        shadowOpacity: 0.4,
+
+    },
+    addButton: {
+        fontSize: 40,
+        bottom: 0,
+        fontWeight: "bold",
+        alignContent: 'center',
+        marginLeft: 4,
+        marginTop: -3,
+        color: '#FFF'
     },
     reminderAlertContainer: {
         marginTop: 5,
