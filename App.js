@@ -37,9 +37,9 @@ export default class App extends React.Component {
             <View style={styles.background}>
                 <View style={styles.medicationHeaderContainer}>
                     <Text style={styles.medicationHeader}> Medication </Text>
-                    <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.buttonContainer}>
                         <Text style={styles.addButton}> + </Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.reminderAlertContainer}>
                     <Text style={styles.reminderAlertText}> Reminders </Text>
