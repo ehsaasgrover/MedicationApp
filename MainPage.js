@@ -1,6 +1,7 @@
 import React from 'react';
-import {Text, View, StyleSheet, Switch, Alert, TouchableOpacity} from 'react-native';
+import {Text, SafeAreaView, View, StyleSheet, Switch, Alert, TouchableOpacity, Button} from 'react-native';
 import {Agenda} from 'react-native-calendars';
+// import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 export default class App extends React.Component {
 
@@ -10,11 +11,12 @@ export default class App extends React.Component {
             '2012-05-22': [{name: '9 AM - One 200 mg Paracetamol '}],
             '2012-05-23': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}],
             '2012-05-24': [{name: '2 AM - One 200 mg Paracetamol'}],
-            '2012-05-25': [{name: '9 AM - One 200 mg Ibuprofen'}, {name: '10 AM - One 500 mg Magnesium Tablet'}]
+            '2012-05-25': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}]
         }
     }
 
     toggleSwitch = (value) => {
+        let stateStatus;
         this.setState({toggled: value})
         if (value === true) {
             Alert.alert ("You will now receive medication reminder notifications");
@@ -34,26 +36,7 @@ export default class App extends React.Component {
             <View style={styles.background}>
                 <View style={styles.medicationHeaderContainer}>
                     <Text style={styles.medicationHeader}> Medication </Text>
-                    <TouchableOpacity
-                        style={styles.buttonContainer}
-                        onPress={() => Alert.prompt(
-                            "Add Medication",
-                            "Enter time and name of Medicine",
-                            [{
-                                text: "Cancel",
-                                //test
-                                onPress: () => console.log("Cancel Pressed"),
-                                style: "cancel"
-                            },
-                                {
-                                    text: "OK",
-                                    onPress: input => console.log("New item: "+input)
-                                    // onPress: Alert.alert("HI")
-                                }
-                            ],
-                        )}
-
-                    >
+                    <TouchableOpacity style={styles.buttonContainer}>
                         <Text style={styles.addButton}> + </Text>
                     </TouchableOpacity>
                 </View>
@@ -72,6 +55,32 @@ export default class App extends React.Component {
 
             </View>
         );
+    }
+
+    loadItems(day) {
+        setTimeout(() => {
+            for (let i = 0; i < 2; i++) {
+                const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+                const strTime = this.timeToString(time);
+                if (!this.state.items[strTime]) {
+                    this.state.items[strTime] = [];
+                    const numItems = Math.floor(Math.random() * 3 + 1);
+                    for (let j = 0; j < numItems; j++) {
+                        this.state.items[strTime].push({
+                            name: 'Item for ' + strTime + ' #' + j,
+                            height: Math.max(50, Math.floor(Math.random() * 150)),
+                        });
+                    }
+                }
+            }
+            const newItems = {};
+            Object.keys(this.state.items).forEach(key => {
+                newItems[key] = this.state.items[key];
+            });
+            this.setState({
+                items: newItems
+            });
+        }, 1000);
     }
 
     renderItem(item) {
