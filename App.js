@@ -4,6 +4,7 @@ import {Agenda} from 'react-native-calendars';
 
 export default class App extends React.Component {
 
+    // Model
     state = {
         toggled: false,
         items: {
@@ -14,6 +15,7 @@ export default class App extends React.Component {
         }
     }
 
+    // ViewModel
     toggleSwitch = (value) => {
         this.setState({toggled: value})
         if (value === true) {
@@ -29,6 +31,31 @@ export default class App extends React.Component {
         this.setState({toggleColor: newState});
     }
 
+    renderItem(item) {
+        const checkBoxColor = item.toggleColor ? "#2DD312BF" : "white";
+        return (
+            <View style={styles.item}>
+                <View>
+                    <Text>{item.name}</Text>
+                </View>
+                <TouchableOpacity
+                    onPress={() => this.checkList(item)}
+                    style={{
+                        borderWidth: 2,
+                        width: 20,
+                        height: 20,
+                        borderRadius: 10,
+                        marginLeft: 290,
+                        justifyContent: 'center',
+                        alignContent: 'center',
+                        marginTop: -5,
+                        backgroundColor: checkBoxColor
+                    }}/>
+            </View>
+        );
+    }
+
+    // View
     render() {
         return (
             <View style={styles.background}>
@@ -52,7 +79,6 @@ export default class App extends React.Component {
                                 }
                             ],
                         )}
-
                     >
                         <Text style={styles.addButton}> + </Text>
                     </TouchableOpacity>
@@ -66,38 +92,11 @@ export default class App extends React.Component {
                 </View>
                 <Agenda
                     items={this.state.items}
-                    //loadItemsForMonth={this.loadItems.bind(this)}
                     selected={'2012-05-22'}
                     renderItem={this.renderItem.bind(this)}/>
-
             </View>
         );
     }
-
-    renderItem(item) {
-        const checkBoxColor = item.toggleColor ? "red" : "white";
-        return (
-            <View style={styles.item}>
-                <View>
-                    <Text>{item.name}</Text>
-                </View>
-                <TouchableOpacity
-                    onPress={() => this.checkList(item)}
-                    style={{
-                        borderWidth: 0.5,
-                        width: 20,
-                        height: 20,
-                        borderRadius: 10,
-                        marginLeft: 290,
-                        justifyContent: 'center',
-                        alignContent: 'center',
-                        marginTop: -5,
-                        backgroundColor: checkBoxColor
-                    }}/>
-            </View>
-        );
-    }
-
 }
 
 const styles = StyleSheet.create({
@@ -170,7 +169,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         padding: 10,
         marginRight: 10,
-        marginTop: 17
+        marginTop: 17,
     },
     checkBox: {
         backgroundColor: 'white',
