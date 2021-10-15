@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
         marginLeft: 330,
         justifyContent: 'center',
         alignContent: 'center',
-        marginTop: -20,
+        marginTop: -30,
         backgroundColor: '#85C1E9',
         shadowOffset: {
             width: 3,
@@ -170,17 +170,5 @@ const styles = StyleSheet.create({
         padding: 10,
         marginRight: 10,
         marginTop: 17,
-    },
-    checkBox: {
-        backgroundColor: 'white',
-        borderColor: 'black',
-        borderWidth: 0.5,
-        width: 20,
-        height: 20,
-        borderRadius: 10,
-        marginLeft: 310,
-        justifyContent: 'center',
-        alignContent: 'center',
-        marginTop: -5
     }
 });
