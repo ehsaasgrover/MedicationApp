@@ -8,6 +8,9 @@ export default class App extends React.Component {
     state = {
         toggled: false,
         items: {
+            '2012-02-09': [{name: '8 AM - One 200 mg Ibuprofen '},{name: '9 AM - One 200 mg Paracetamol '}],
+            '2012-05-09': [{name: '8 AM - One 200 mg Ibuprofen '}],
+            '2012-05-10': [{name: '8 AM - One 200 mg Ibuprofen '}, {name: '10 AM - One 500 mg Magnesium Tablet'}],
             '2012-05-22': [{name: '9 AM - One 200 mg Paracetamol '}],
             '2012-05-23': [{name: '9 AM - One 200 mg Paracetamol'}, {name: '10 AM - One 500 mg Magnesium Tablet'}],
             '2012-05-24': [{name: '2 AM - One 200 mg Paracetamol'}],
@@ -20,8 +23,10 @@ export default class App extends React.Component {
         this.setState({toggled: value})
         if (value === true) {
             Alert.alert ("You will now receive medication reminder notifications");
+            console.log("Reminders turned on")
         } else {
             Alert.alert ("Reminder notifications have been turned off");
+            console.log("Reminders turned off")
         }
     }
 
@@ -29,6 +34,7 @@ export default class App extends React.Component {
         const newState = !item.toggleColor;
         item.toggleColor = newState;
         this.setState({toggleColor: newState});
+        console.log("Checkbox toggled")
     }
 
     renderItem(item) {
@@ -68,14 +74,12 @@ export default class App extends React.Component {
                             "Enter time and name of Medicine",
                             [{
                                 text: "Cancel",
-                                //test
                                 onPress: () => console.log("Cancel Pressed"),
                                 style: "cancel"
                             },
                                 {
                                     text: "OK",
                                     onPress: input => console.log("New item: "+input)
-                                    // onPress: Alert.alert("HI")
                                 }
                             ],
                         )}
