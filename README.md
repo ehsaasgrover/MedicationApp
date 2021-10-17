@@ -14,6 +14,7 @@ Below are the instructions to compile the code:
  - Open terminal within the project root and type the following:
 
 `npm i -g expo-cli`
+
 `npm start`
 
 An Expo client browser should open up, do not close this. 
