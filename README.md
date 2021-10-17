@@ -22,7 +22,9 @@ According to the instructions provided in the terminal window, choose the way yo
 If you would like to run it through the simulators press `a` for android and `i` for iOS.
 If you would like to run it on your personal phone, scan the QR code and it should then open on your phone. 
 
-
+## YouTube
+Here is a YouTube link that demonstrates the application in action: 
+[Medication App](https://www.youtube.com/watch?v=riHfTBKAG2A)
 
 
 
