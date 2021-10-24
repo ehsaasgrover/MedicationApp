@@ -12,6 +12,8 @@ Below are the instructions to compile the code:
 
  - Clone the repository (https://github.com/ehsaasgrover/MedicationApp/) into your IDE of choice OR open the project within your IDE of choice
  - Open terminal within the project root and type the following:
+ 
+`npm install`
 
 `npm i -g expo-cli`
 
