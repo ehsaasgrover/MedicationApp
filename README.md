@@ -7,14 +7,13 @@ This project is a part of the Mobile Systems Development paper (COMP826) at AUT.
 Prerequisites: 
 Install 'Expo client' app on your phone if you would like to try run the application on a real smart phone.
 Otherwise, ensure you have an android studio simulator or an iOS simulator from XCode. 
+Make sure you are running Node version 12 and above. (You can type node -v in terminal to check) 
 
 Below are the instructions to compile the code:
 
  - Clone the repository (https://github.com/ehsaasgrover/MedicationApp/) into your IDE of choice OR open the project within your IDE of choice
  - Open terminal within the project root and type the following:
  
-`npm install`
-
 `npm i -g expo-cli`
 
 `npm start`
