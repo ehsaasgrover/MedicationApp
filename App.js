@@ -51,7 +51,7 @@ export default class App extends React.Component {
                         width: 20,
                         height: 20,
                         borderRadius: 10,
-                        marginLeft: 290,
+                        marginLeft: 300,
                         justifyContent: 'center',
                         alignContent: 'center',
                         marginTop: -5,
@@ -103,6 +103,7 @@ export default class App extends React.Component {
     }
 }
 
+
 const styles = StyleSheet.create({
     background: {
         flex: 1,
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 30,
-        marginLeft: 330,
+        marginLeft: 340,
         justifyContent: 'center',
         alignContent: 'center',
         marginTop: -30,
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
     },
     reminderAlertSwitch: {
         bottom: 20,
-        marginLeft: 320
+        marginLeft: 330
     },
     item: {
         backgroundColor: 'white',
